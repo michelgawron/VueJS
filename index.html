@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>First Vue.js page</title>
@@ -21,10 +21,10 @@
     <p>Names: <i v-for="name in names" v-text="name"></i></p>
     <p>##############################</p>
 
-    <p>Let's try to create a todo list using vue, the binding, and some buttons to act on the list</p>
-    <input type="text" id="todolist">
-    <button id="btn">Add something</button>
-    <button id="remove">Remove last</button>
+    <p @mousedown="showMsg">Let's try to create a todo list using vue, the binding, and some buttons to act on the list</p>
+    <input type="text" id="todolist" v-model="inputToDo">
+    <button id="btn" @click="addName">Add something</button>
+    <button id="remove" @click="removeSmth">Remove last</button>
 </div>
 
 
@@ -37,23 +37,25 @@
         el: "#root",
         data: {
             message: 'Hello World',
-            names: ["Michel", "Philippe", "Pierre", "Paul", "Jacques"]
+            names: ["Michel", "Philippe", "Pierre", "Paul", "Jacques"],
+            inputToDo: ''
+        },
+        methods: {
+            addName() {
+                this.names.push(this.inputToDo);
+                this.inputToDo = '';
+            },
+            removeSmth() {
+                this.names.pop();
+            },
+            showMsg()
+            {
+                alert("You just clicked on the message")
+            }
         },
         mounted() {
-            document.querySelector("#btn").addEventListener('click', () => {
-                let name = document.querySelector("#todolist");
-                app.names.push(name.value);
-                // Resetting the field after the update on the list
-                name.value = "";
-            });
-
-            document.querySelector('#remove').addEventListener('click', () =>{
-                app.names.pop();
-            });
         }
     });
-
-
 
 
 </script>
