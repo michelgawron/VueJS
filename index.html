@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Vue.js page</title>
+</head>
+<body>
+<p>This input holds the data of our message thanks to the binding below</p>
+<div id="root">
+    <input type="text" id="input" v-model="message">
+    <p>The value of your message is: <i>{{ message }}</i></p>
+
+
+    <p>##############################</p>
+    <p>Syntax for a for loop</p>
+    <ul>
+        <li v-for="name in names">{{name}}</li>
+    </ul>
+
+    <p>Another example of a for loop to show names in a single line but without space</p>
+    <p>Names: <i v-for="name in names" v-text="name"></i></p>
+    <p>##############################</p>
+
+    <p>Let's try to create a todo list using vue, the binding, and some buttons to act on the list</p>
+    <input type="text" id="todolist">
+    <button id="btn">Add something</button>
+    <button id="remove">Remove last</button>
+</div>
+
+
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+<script>
+    // Creating a data binding on the root element and passing it some parameters
+    // The mounted function initiates some functions dynamically on elements wanted
+    var app = new Vue({
+        el: "#root",
+        data: {
+            message: 'Hello World',
+            names: ["Michel", "Philippe", "Pierre", "Paul", "Jacques"]
+        },
+        mounted() {
+            document.querySelector("#btn").addEventListener('click', () => {
+                let name = document.querySelector("#todolist");
+                app.names.push(name.value);
+                // Resetting the field after the update on the list
+                name.value = "";
+            });
+
+            document.querySelector('#remove').addEventListener('click', () =>{
+                app.names.pop();
+            });
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>
