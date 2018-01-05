@@ -60,10 +60,12 @@
 
             },
         methods: {
+            // Complete de first task uncompleted on the list - used as an exercise base
             completeATask() {
                 let list = this.tasks.filter(task => !task.completed);
                 list[0].completed = true;
             },
+            // Complete or uncomplete a task - finding it in our list thanks to its description
             complete(event, taskToDo)
             {
                 let element = this.tasks.find(task => task.description == taskToDo.description);
@@ -71,9 +73,11 @@
             }
         },
         computed: {
+            // A computation method to reverse our message
             reversedMessage() {
                 return this.message.split('').reverse().join('');
             },
+            // A computation returning incomplete tasks on our list - is automatically updated
             incompleteTasks() {
                 return this.tasks.filter(task => !task.completed);
             }
