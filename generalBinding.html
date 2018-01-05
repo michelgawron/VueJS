@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>First Vue.js page</title>
+    <style>
+        .Red {
+            color: red;
+        }
+
+        .Blue {
+            color: blue;
+        }
+
+        .isloading {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+<p>This input holds the data of our message thanks to the binding below</p>
+<div id="root">
+    <input type="text" id="input" v-model="message">
+    <p>The value of your message is: <i>{{ message }}</i></p>
+
+
+    <p>##############################</p>
+    <p>Syntax for a for loop</p>
+    <ul>
+        <li v-for="name in names">{{name}}</li>
+    </ul>
+
+    <p>Another example of a for loop to show names in a single line but without space</p>
+    <p>Names: <i v-for="name in names" v-text="name"></i></p>
+    <p>##############################</p>
+
+    <p @mousedown="showMsg">Let's try to create a todo list using vue, the binding, and some buttons to act on the
+        list</p>
+    <input type="text" id="todolist" v-model="inputToDo" @keypress="enterPressed($event)">
+    <button id="btn" @click="addName">Add something</button>
+    <button id="remove" @click="removeSmth">Remove last</button>
+
+    <p>##############################</p>
+    <button :title="title">Test</button>
+    <h1 :class="className">My title</h1>
+    <p>
+        Dynamic class names can help you to create animations on your webpage - for example when you click on a button
+        you may want to disable it or to enable a loading icon and display it. <br>
+        You can also set conditions on your dynamic class names as follows.
+    </p>
+    <button :class="{'isloading': isloading}" @click="toggleButton">Click on it</button>
+    <button :disabled="isDisabled" @click="disableButton">Click me to disable</button>
+</div>
+
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+<script>
+    // Creating a data binding on the root element and passing it some parameters
+    // The mounted function initiates some functions dynamically on elements wanted
+    var app = new Vue({
+        el: "#root",
+        data: {
+            message: 'Hello World',
+            names: ["Michel", "Philippe", "Pierre", "Paul", "Jacques"],
+            inputToDo: '',
+            title: 'Hover over me',
+            className: "Red",
+            isloading: false,
+            isDisabled: false
+        },
+        methods: {
+            // Function used to test the behaviour of data binding on a list of elements by adding one
+            addName() {
+                this.names.push(this.inputToDo);
+                this.inputToDo = '';
+            },
+            // Same as before but popping one
+            removeSmth() {
+                this.names.pop();
+            },
+            // Event on a message click
+            showMsg() {
+                alert("You just clicked on the message")
+            },
+            // Event when a key is pressed giving the key to the code
+            enterPressed(event) {
+                if (event.keyCode == '13') {
+                    this.addName();
+                }
+            },
+            // Example of dynamic class naming by using a variable on the data binding
+            toggleButton() {
+                this.isloading = !this.isloading;
+            },
+            // Example of dynamic property setting in order to disable a button
+            disableButton() {
+                this.isDisabled = true;
+            }
+        },
+        mounted() {
+            // Mounts vue js on the element you want (loads it)
+        }
+    });
+
+
+</script>
+</body>
+</html>
