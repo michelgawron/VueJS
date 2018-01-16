@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Named slots</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
+    <style>
+        #root {
+            max-width: 600px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 20px;
+            min-width: 100px;
+        }
+
+        .card {
+            margin-top: 5px;
+        }
+
+        .time {
+            font-weight: normal;
+            font-size: x-small;
+            margin-left: 5px;
+        }
+
+        .percentage {
+            text-align: right !important;
+        }
+
+        .showCardContent-enter-active {
+            animation: comeIn .5s;
+        }
+
+        .showCardContent-leave-active {
+            animation: comeIn .5s reverse;
+        }
+
+        @keyframes comeIn {
+            0% {
+                opacity: 0;
+            }
+            25%{
+                opacity: 0.25;
+            }
+            50%{
+                opacity: 0.5;
+            }
+            75%{
+                opacity: 0.75;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="root">
+    <list-currencies></list-currencies>
+</div>
+
+
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+<!-- We have externalized our Vue.js methods, objects, etc into a separate file -->
+<script src="../js/namedSlots.js"></script>
+</body>
+</html>

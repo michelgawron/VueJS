@@ -2,7 +2,7 @@
   "name": "VueJS",
   "version": "0.0.1",
   "dependencies": {
-    
+    "socket.io-client": "^2.0.4"
   },
   "main": "elect.js"
 }

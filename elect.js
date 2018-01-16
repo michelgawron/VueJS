@@ -12,7 +12,7 @@ app.on('ready', function () {
 
     // Specify entry point to default entry point of vue.js to a lcoal file
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'computedProperties.html'),
+        pathname: path.join(__dirname, '/src/namedSlots.html'),
         protocol: 'file:',
         slashes: true
     }));
